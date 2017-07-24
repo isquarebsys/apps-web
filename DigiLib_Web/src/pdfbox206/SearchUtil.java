@@ -12,7 +12,7 @@ public class SearchUtil {
 	private static final int DEFAULT_RESULT_SIZE = 100;
 
 	public static List<Result> search(String searchString, File file) {
-		String INDEX_DIR = System.getProperty("user.dir");
+		String INDEX_DIR = System.getProperty("user.dir")+"/"+"index";
 		// Index directory is D:\technical\installed\eclipse\neon incase of local neon workspace
 		// In case of aws tomcat, it is /usr/share/tomcat8
 		List<Result> searchResult = new ArrayList();
