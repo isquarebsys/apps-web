@@ -1,3 +1,5 @@
+<%@page import="org.apache.pdfbox.text.PDFTextStripper"%>
+<%@page import="org.apache.pdfbox.pdmodel.PDDocument"%>
 <%@page import="pdfbox206.*"%>
 <%@page import="java.io.File,java.util.*"%>
 <%@page import="java.io.PrintWriter"%>
@@ -22,15 +24,28 @@
 			out.print("Pdf Directory: " + folder.getPath());
 			out.print("<br/>");
 			out.print("Text searched->" + searchString);
-			out.print("<h1>Search Result</h1>");
-			out.print("<font color=\"blue\">");
+			out.print("<font color=\"blue\"><h1>Search Result</h1></font>");
 			Iterator searchResultIterator = searchResult.iterator();
 			while (searchResultIterator.hasNext()) {
 				Result result = (Result) searchResultIterator.next();
-				out.print(result.getFileName());
+				String pdfFileName=result.getFileName();
+				out.print("<font color=\"green\"><h2>"+pdfFileName+"</h2></font>");
+				File pdfFile=new File(pdfDir+"/"+pdfFileName);
+				PDDocument pdfDocument = PDDocument.load(pdfFile);
+				//System.out.println("No of pages: "+pdfDocument.getNumberOfPages());
+				for(int i=0;i<pdfDocument.getNumberOfPages();i++){
+					PDFTextStripper reader = new PDFTextStripper();
+					reader.setStartPage(i);
+					reader.setEndPage(i);
+					String content = reader.getText(pdfDocument);
+					if(content.contains(searchString)){
+						out.print(content);	
+					}
+					out.print("<br/>");
+				}
+				pdfDocument.close();
 				out.print("<br/>");
 			}
-			out.print("</font>");
 		} else {
 			out.print("Please ENTER search text");
 		}
