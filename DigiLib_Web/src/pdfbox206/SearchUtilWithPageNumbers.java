@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-public class SearchUtil {
+public class SearchUtilWithPageNumbers {
 	private static final int DEFAULT_RESULT_SIZE = 100;
 
 	public static List<Result> search(String searchString, File file) {
@@ -28,10 +28,12 @@ public class SearchUtil {
 						System.out.println("fileName: " + fileName);
 						if (fileName.endsWith(".pdf")) {
 							File pdfFile = new File(file + "/" + fileName);
-							IndexItem pdfIndexItem = index(pdfFile);
-							Indexer indexer = new Indexer(INDEX_DIR);
-							indexer.index(pdfIndexItem);
-							indexer.close();
+							System.out.println("File Name: "+pdfFile.getName());
+//							IndexItem pdfIndexItem = index(pdfFile);
+//							Indexer indexer = new Indexer(INDEX_DIR);
+//							indexer.index(pdfIndexItem);
+//							indexer.close();
+							index(pdfFile);
 							Searcher searcher = new Searcher(INDEX_DIR);
 							searchResult = searcher.findByContent(searchString, DEFAULT_RESULT_SIZE);
 						}
@@ -45,10 +47,27 @@ public class SearchUtil {
 	}
 
 	// Extract text from PDF document
-	public static IndexItem index(File file) throws IOException {
-		PDDocument doc = PDDocument.load(file);
-		String content = new PDFTextStripper().getText(doc);
-		doc.close();
-		return new IndexItem((long) file.getName().hashCode(), file.getName(), content,"1");
+	public static void index(File pdfFile) throws IOException {
+//		IndexItem pdfIndexItem = index(pdfFile);
+		String INDEX_DIR = System.getProperty("user.dir")+"/"+"index";
+//		Indexer indexer = new Indexer(INDEX_DIR);
+//		indexer.index(pdfIndexItem);
+//		indexer.close();
+		PDDocument pdfDocument = PDDocument.load(pdfFile);
+		System.out.println("No of pages: "+pdfDocument.getNumberOfPages());
+		for(int i=0;i<pdfDocument.getNumberOfPages();i++){
+			PDFTextStripper reader = new PDFTextStripper();
+			reader.setStartPage(i);
+			reader.setEndPage(i);
+			String content = reader.getText(pdfDocument);
+			IndexItem indexItem= new IndexItem((long) pdfFile.getName().hashCode(), pdfFile.getName(), content,i+"");
+			Indexer indexer = new Indexer(INDEX_DIR);
+			indexer.index(indexItem);
+			indexer.close();
+		}
+//		String content = new PDFTextStripper().getText(pdfDocument);
+		
+		pdfDocument.close();
+		
 	}
 }

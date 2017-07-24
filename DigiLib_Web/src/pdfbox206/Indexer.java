@@ -37,6 +37,7 @@ public class Indexer {
         doc.add(new Field(IndexItem.ID, indexItem.getId().toString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
         doc.add(new Field(IndexItem.TITLE, indexItem.getTitle(), Field.Store.YES, Field.Index.ANALYZED));
         doc.add(new Field(IndexItem.CONTENT, indexItem.getContent(), Field.Store.YES, Field.Index.ANALYZED));
+        doc.add(new Field(IndexItem.PAGE_NUMBER, indexItem.getPageNumber()+"", Field.Store.YES, Field.Index.ANALYZED));
 
         // add the document to the index
         writer.addDocument(doc);

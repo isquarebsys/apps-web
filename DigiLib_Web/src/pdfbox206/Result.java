@@ -2,6 +2,13 @@ package pdfbox206;
 
 public class Result {
 	private String fileName;
+	private String pageNumber;
+	public String getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(String pageNumber) {
+		this.pageNumber = pageNumber;
+	}
 	public String getFileName() {
 		return fileName;
 	}

@@ -71,7 +71,9 @@ public class Searcher {
 			Document doc = searcher.doc(scoreDoc.doc);
 			String fileName = doc.getField("title").stringValue();
 			System.out.println("File Name: " + doc.getField("title").stringValue());
+			String pageNumber=doc.getField("page_number").stringValue();
 			result.setFileName(fileName);
+			result.setPageNumber(pageNumber);
 			searchResultList.add(result);
 
 		}

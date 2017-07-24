@@ -12,8 +12,10 @@
 <body>
 	<h1>Welcome to the Digital Library of Mahatma GANDHI</h1>
 	<%
-		String webContentPath=getServletContext().getRealPath("."+"/"+"pdf");
-		File folder=new File(webContentPath);
+		String indexDir = System.getProperty("user.dir")+"/"+"index";
+		//String webContentPath=getServletContext().getRealPath("."+"/"+"pdf");
+		String pdfDir = System.getProperty("user.dir")+"/"+"pdf";
+		File folder=new File(pdfDir);
 		String searchString = request.getParameter("search_text");
 		if (searchString != null) {
 			List<Result> searchResult = SearchUtil.search(searchString,folder);
