@@ -1098,6 +1098,7 @@ section[id="h.p_Xvlbou7oGXe2"] .IFuOkc:before {
 				</header>
 				<div role="main" class="UtePc RCETm" jscontroller="oVfKv"
 					jsaction="Jddzq: Ffcznf;rcuQ6b:WYd;">
+					<!-- 
 					<section id="h.p_Xvlbou7oGXe2"
 						class="yaqOZd LB7kq cJgDec nyKByd O13XJf" style="">
 						<div class="Nu95r">
@@ -1107,13 +1108,15 @@ section[id="h.p_Xvlbou7oGXe2"] .IFuOkc:before {
 								role="img"
 								style="width: 100%; margin: -0.000000306% 0 -0.000000306% 0%">
 						</div>
+						
+					</section>
+					 -->
 						<div class="mYVXT">
 							<div class="LS81yb VICjCf" tabindex="-1">
 								<div
 									class="hJDwNd-AhqUyc-uQSCkd JNdkSc L6cTce-purZT L6cTce-pSzOP"></div>
 							</div>
-						</div>
-					</section>
+						</div>					 
 					<section id="h.p_L3dH1qbrHNSR" class="yaqOZd" style="">
 
 						<div class="tyJCtd mGzaTb baZpAe">
@@ -1163,7 +1166,7 @@ section[id="h.p_Xvlbou7oGXe2"] .IFuOkc:before {
 
 					<section id="h.p_L3dH1qbrHNSR" class="yaqOZd" style="text-align: center;">
 						<div class="tyJCtd mGzaTb baZpAe">
-<form name="myform" action="pdf_search.jsp" method="POST">
+<form name="myform" action="index.jsp" method="POST">
 								<h1 id="h.p_rPdEXacfHNSO" class="zfr3Q duRjpb"
 									style="text-align: center;">Search for Quotes and other
 									Events</h1>
